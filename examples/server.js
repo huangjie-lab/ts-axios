@@ -27,15 +27,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const router = express.Router()
 
+// simple模块测试
 router.get('/simple/get', function(req, res) {
   res.json({
     msg: `hello world`
   })
 })
 
+// base模块测试
 router.post('/base/post', function(req, res) {
   res.json(req.body)
-  // res.status(201).json({ name: '请求收到了' })
+  // res.status(301).json({ name: '请求收到了' })
 })
 
 router.post('/base/buffer', function(req, res) {
@@ -49,6 +51,26 @@ router.post('/base/buffer', function(req, res) {
     let buf = Buffer.concat(msg)
     res.json(buf.toJSON())
   })
+})
+
+// error模块测试
+router.get('/error/get', function(req, res) {
+  if (Math.random() > 0.5) {
+    res.json({
+      msg: `hello world`
+    })
+  } else {
+    res.status(500)
+    res.end()
+  }
+})
+
+router.get('/error/timeout', function(req, res) {
+  setTimeout(() => {
+    res.json({
+      msg: `hello world`
+    })
+  }, 3000)
 })
 
 app.use(router)
