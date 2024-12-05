@@ -29,9 +29,7 @@ const router = express.Router()
 
 // simple模块测试
 router.get('/simple/get', function(req, res) {
-  res.json({
-    msg: `hello world`
-  })
+  res.json(req.query)
 })
 
 // base模块测试

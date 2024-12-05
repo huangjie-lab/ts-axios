@@ -8,3 +8,11 @@ axios({
     b: 2
   }
 })
+
+axios('/simple/get', {
+  method: 'get',
+  params: {
+    a: 3,
+    b: 4
+  }
+})
